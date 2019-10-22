@@ -1,0 +1,45 @@
+{
+  "name": "resource-decorator",
+  "version": "1.0.0",
+  "description": "A set of decorator used to defined an HTTP resource that is very opinionated. This library should be used with a resource-generator.",
+  "scripts": {
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npm run lint-server",
+    "lint-server": "./node_modules/.bin/eslint \"**/*.{js,ts}\" --quiet --fix",
+    "build": "./node_modules/.bin/tsc --project ./tsconfig.json",
+    "todo": "./node_modules/.bin/leasot -x --reporter markdown src/**/*.ts > TODO.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/epandco/resource-decorator"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "EP+Co",
+  "contributors": [
+    "Tommy Philyaw <tommy.philyaw@epandcompany.com>",
+    "Dan Alexander <dan.alexander@epandcompany.com>"
+  ],
+  "main": "./lib/index.js",
+  "files": [
+    "/lib"
+  ],
+  "license": "MIT",
+  "private": true,
+  "homepage": "https://github.com/epandco/resource-decorator#readme",
+  "devDependencies": {
+    "@types/eslint": "^6.1.1",
+    "@typescript-eslint/eslint-plugin": "^2.3.2",
+    "@typescript-eslint/parser": "^2.3.2",
+    "@types/dotenv": "~6.1.1",
+    "typescript": "^3.6.3",
+    "eslint": "^6.5.1",
+    "leasot": "^8.2.0",
+    "reflect-metadata": "~0.1.13"
+  },
+  "peerDependencies": {
+    "reflect-metadata": "~0.1.13"
+  }
+}
