@@ -22,9 +22,10 @@
     "Tommy Philyaw <tommy.philyaw@epandcompany.com>",
     "Dan Alexander <dan.alexander@epandcompany.com>"
   ],
-  "main": "./lib/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "/lib"
+    "lib/**/*"
   ],
   "license": "MIT",
   "private": true,
