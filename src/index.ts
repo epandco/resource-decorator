@@ -10,3 +10,4 @@ export { ResourceRenderer, registerDefaultRenderer, getDefaultRenderer } from '.
 export { ResourceType } from './resource-type';
 export { ResourceTemplateContent } from './resource-template-content';
 export { ResourceApiResponse, ResourceTemplateResponse } from './resource-response';
+export { ResourceUnauthorized } from './resource-unauthorized';
