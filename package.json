@@ -1,6 +1,6 @@
 {
   "name": "resource-decorator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A set of decorator used to defined an HTTP resource that is very opinionated. This library should be used with a resource-generator.",
   "scripts": {
     "prepare": "npm run build",
