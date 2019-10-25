@@ -6,10 +6,10 @@ export interface CookieItem {
   options?: object;
 }
 
-export class ResourceResponseWithCookies {
+export abstract class CookieBase {
   public cookies?: CookieItem[];
 
-  constructor(cookies?: CookieItem[]) {
+  protected constructor(cookies?: CookieItem[]) {
     this.cookies = cookies;
   }
 }

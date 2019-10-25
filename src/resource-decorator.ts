@@ -7,7 +7,10 @@ import { ResourceRouteOptions } from './resource-route-options';
 import { HttpMethod } from './http-method';
 import { ResourceRenderer } from './resource-renderer';
 import { ResourceType } from './resource-type';
-import { ResourceApiResponse, ResourceTemplateResponse } from './resource-response';
+import { RedirectResponse } from './redirect-response';
+import { ApiResponse } from './api-response';
+import { CookieResponse } from './cookie-response';
+import { TemplateResponse } from './template-response';
 
 
 // throws an exception if wrong
@@ -55,12 +58,12 @@ type RouteParams = object | string;
 /**
  * This type defines what an API resource route handler should look like.
  */
-type ApiRouteHandler = (...args: RouteParams[]) => Promise<ResourceApiResponse>;
+type ApiRouteHandler = (...args: RouteParams[]) => Promise<ApiResponse | CookieResponse | void>;
 
 /**
  * This type defines what an Template resource route handler should look like.
  */
-type TemplateRouteHandler = (...args: RouteParams[]) => Promise<ResourceTemplateResponse>;
+type TemplateRouteHandler = (...args: RouteParams[]) => Promise<TemplateResponse | RedirectResponse>;
 
 function routeBuilder<Handler extends ApiRouteHandler | TemplateRouteHandler>(method: HttpMethod, resourceType: ResourceType, resourceRouteOptions?: ResourceRouteOptions) {
   let path = '';

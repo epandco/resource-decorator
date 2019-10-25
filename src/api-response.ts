@@ -1,7 +1,7 @@
 import { ResourceContentType } from './resource-content-type';
-import { ResourceResponseWithCookies, CookieItem } from './resource-response-with-cookies';
+import { CookieBase, CookieItem } from './cookie-base';
 
-export class ResourceContent extends ResourceResponseWithCookies {
+export class ApiResponse extends CookieBase {
   public content: ResourceContentType;
 
   constructor(content: ResourceContentType, cookies?: CookieItem[]) {

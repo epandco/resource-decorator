@@ -1,11 +1,11 @@
-import { ResourceContent } from './resource-content';
+import { ApiResponse } from './api-response';
+import { TemplateResponse } from './template-response';
 import { ResourceError } from './resource-error';
 import { ResourceType } from './resource-type';
-import { ResourceResponseWithCookies } from './resource-response-with-cookies';
 
 export interface ResourceRenderer {
   contentType: string;
-  ok(model?: ResourceResponseWithCookies): Promise<string>;
+  ok(model?: ApiResponse | TemplateResponse): Promise<string>;
   notFound(): Promise<string>;
   expectedError(err: ResourceError): Promise<string>;
   unexpectedError(msg: string): Promise<string>;
@@ -21,12 +21,12 @@ class DefaultAPIRenderer implements ResourceRenderer {
 
   public contentType: string = 'application/json';
 
-  async ok(model?: ResourceContent): Promise<string> {
+  async ok(model?: ApiResponse | TemplateResponse): Promise<string> {
     if (!model) {
       return '';
     }
 
-    if (!(model instanceof ResourceContent)) {
+    if (!(model instanceof ApiResponse)) {
       throw new Error(`Model must be of type ResourceContent type. Current type is ${typeof model}`);
     }
 

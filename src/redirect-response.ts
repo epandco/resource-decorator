@@ -1,6 +1,6 @@
-import { ResourceResponseWithCookies, CookieItem } from './resource-response-with-cookies';
+import { CookieBase, CookieItem } from './cookie-base';
 
-export class ResourceRedirect extends ResourceResponseWithCookies {
+export class RedirectResponse extends CookieBase {
   public redirectUrl: string;
   public statusCode?: number;
 

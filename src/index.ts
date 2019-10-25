@@ -2,12 +2,12 @@ export { resource, template, get, put, post, del, query, path, body, local } fro
 export { HttpMethod } from './http-method';
 export { ResourceNotFound } from './resource-not-found';
 export { ResourceError } from './resource-error';
-export { ResourceContent } from './resource-content';
-export { ResourceRedirect } from './resource-redirect';
 export { ResourceRouteMetadata } from './resource-route-metadata';
-export { ResourceResponseWithCookies } from './resource-response-with-cookies';
 export { ResourceRenderer, registerDefaultRenderer, getDefaultRenderer } from './resource-renderer';
 export { ResourceType } from './resource-type';
-export { ResourceTemplateContent } from './resource-template-content';
-export { ResourceApiResponse, ResourceTemplateResponse } from './resource-response';
 export { ResourceUnauthorized } from './resource-unauthorized';
+export { ApiResponse } from './api-response';
+export { TemplateResponse } from './template-response';
+export { CookieBase } from './cookie-base';
+export { CookieResponse } from './cookie-response';
+export { RedirectResponse } from './redirect-response';
