@@ -46,7 +46,7 @@ class DefaultAPIRenderer implements ResourceRenderer {
   }
 
   async unauthorized(): Promise<string> {
-    return 'Not authorized';
+    return JSON.stringify('Not authorized');
   }
 
 }
