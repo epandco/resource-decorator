@@ -8,7 +8,7 @@ export interface ResourceRenderer {
   ok(model?: ApiResponse | TemplateResponse): Promise<string>;
   notFound(): Promise<string>;
   expectedError(err: ResourceError): Promise<string>;
-  unexpectedError(msg: string): Promise<string>;
+  fatalError(msg: string): Promise<string>;
   unauthorized(): Promise<string>;
 }
 
@@ -41,7 +41,7 @@ class DefaultAPIRenderer implements ResourceRenderer {
     return JSON.stringify(err);
   }
 
-  async unexpectedError(msg: string): Promise<string> {
+  async fatalError(msg: string): Promise<string> {
     return JSON.stringify(msg);
   }
 
