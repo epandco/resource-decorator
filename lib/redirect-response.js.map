@@ -1,0 +1,1 @@
+{"version":3,"file":"redirect-response.js","sourceRoot":"","sources":["../src/redirect-response.ts"],"names":[],"mappings":";;AAAA,+CAAuD;AAEvD,MAAa,gBAAiB,SAAQ,wBAAU;IAI9C,YAAY,WAAmB,EAAE,UAAmB,EAAE,OAAsB;QAC1E,KAAK,CAAC,OAAO,CAAC,CAAC;QAEf,IAAI,CAAC,WAAW,GAAG,WAAW,CAAC;QAC/B,IAAI,CAAC,UAAU,GAAG,UAAU,CAAC;IAC/B,CAAC;CACF;AAVD,4CAUC"}
