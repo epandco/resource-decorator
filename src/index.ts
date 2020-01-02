@@ -1,4 +1,4 @@
-export { resource, template, get, put, post, del, query, path, body, local } from './resource-decorator';
+export { resource, template, get, getFile, put, post, del, query, path, body, local } from './resource-decorator';
 export { HttpMethod } from './http-method';
 export { ResourceNotFound } from './resource-not-found';
 export { ResourceError } from './resource-error';
@@ -11,3 +11,4 @@ export { TemplateResponse } from './template-response';
 export { CookieBase } from './cookie-base';
 export { CookieResponse } from './cookie-response';
 export { RedirectResponse } from './redirect-response';
+export { FileResponse } from './file-response';
