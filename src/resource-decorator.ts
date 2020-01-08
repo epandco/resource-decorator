@@ -10,6 +10,7 @@ import { ResourceType } from './resource-type';
 import { RedirectResponse } from './redirect-response';
 import { ApiResponse } from './api-response';
 import { CookieResponse } from './cookie-response';
+import { FileResponse } from './file-response';
 import { TemplateResponse } from './template-response';
 
 
@@ -61,11 +62,15 @@ type RouteParams = object | string;
 type ApiRouteHandler = (...args: RouteParams[]) => Promise<ApiResponse | CookieResponse | void>;
 
 /**
+ * This type defines what an API resource route handler should look like.
+ */
+type FileRouteHandler = (...args: RouteParams[]) => Promise<FileResponse>;
+/**
  * This type defines what an Template resource route handler should look like.
  */
 type TemplateRouteHandler = (...args: RouteParams[]) => Promise<TemplateResponse | RedirectResponse>;
 
-function routeBuilder<Handler extends ApiRouteHandler | TemplateRouteHandler>(method: HttpMethod, resourceType: ResourceType, resourceRouteOptions?: ResourceRouteOptions) {
+function routeBuilder<Handler extends ApiRouteHandler | TemplateRouteHandler | FileRouteHandler>(method: HttpMethod, resourceType: ResourceType, resourceRouteOptions?: ResourceRouteOptions) {
   let path = '';
   let resourceRenderer: ResourceRenderer | undefined;
 
@@ -202,6 +207,30 @@ export function template(resourceRouteOptions?: ResourceRouteOptions) {
 export function get(resourceRouteOptions?: ResourceRouteOptions) {
   return routeBuilder<ApiRouteHandler>(HttpMethod.GET, ResourceType.API, resourceRouteOptions);
 }
+
+/**
+ * Generates a HTTP GET route with the following semantics:
+ * 
+ *  - Any non null or undefeind value returned from a function is 
+ *    treated as 200 rendered as JSON via JSON.stringify.
+ * 
+ *  - Any function that returns null or undefined will treated as 201
+ *    with no body.
+ *  
+ *  - If a ResourceError is thrown it will be treated as 400 and it's contents
+ *    rendered as JSON via JSON.stringify.
+ * 
+ *  - A ResourceNotFound being thrown results in a 404 with no body
+ * 
+ *  - Any other error thrown will result in 500 being logged to console
+ *    and a generic error message back to the client
+ * 
+ * @param resourceRouteOptions the options for this route @see ResourceRouteOptions
+ */
+export function getFile(resourceRouteOptions?: ResourceRouteOptions) {
+  return routeBuilder<FileRouteHandler>(HttpMethod.GET, ResourceType.FILE, resourceRouteOptions);
+}
+
 
 /**
  * Generates a HTTP POST route with the following semantics:
