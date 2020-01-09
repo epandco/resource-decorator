@@ -4,6 +4,7 @@ import { ResourceRouteOptions } from './resource-route-options';
 import { RedirectResponse } from './redirect-response';
 import { ApiResponse } from './api-response';
 import { CookieResponse } from './cookie-response';
+import { FileResponse } from './file-response';
 import { TemplateResponse } from './template-response';
 /**
  * Restricts the input to a route handler to either being a string or an object
@@ -15,6 +16,10 @@ declare type RouteParams = object | string;
  * This type defines what an API resource route handler should look like.
  */
 declare type ApiRouteHandler = (...args: RouteParams[]) => Promise<ApiResponse | CookieResponse | void>;
+/**
+ * This type defines what an API resource route handler should look like.
+ */
+declare type FileRouteHandler = (...args: RouteParams[]) => Promise<FileResponse>;
 /**
  * This type defines what an Template resource route handler should look like.
  */
@@ -73,6 +78,26 @@ export declare function template(resourceRouteOptions?: ResourceRouteOptions): <
  * @param resourceRouteOptions the options for this route @see ResourceRouteOptions
  */
 export declare function get(resourceRouteOptions?: ResourceRouteOptions): <T>(target: T, key: string, descriptor: TypedPropertyDescriptor<ApiRouteHandler>) => TypedPropertyDescriptor<ApiRouteHandler>;
+/**
+ * Generates a HTTP GET route with the following semantics:
+ *
+ *  - Any non null or undefeind value returned from a function is
+ *    treated as 200 rendered as JSON via JSON.stringify.
+ *
+ *  - Any function that returns null or undefined will treated as 201
+ *    with no body.
+ *
+ *  - If a ResourceError is thrown it will be treated as 400 and it's contents
+ *    rendered as JSON via JSON.stringify.
+ *
+ *  - A ResourceNotFound being thrown results in a 404 with no body
+ *
+ *  - Any other error thrown will result in 500 being logged to console
+ *    and a generic error message back to the client
+ *
+ * @param resourceRouteOptions the options for this route @see ResourceRouteOptions
+ */
+export declare function getFile(resourceRouteOptions?: ResourceRouteOptions): <T>(target: T, key: string, descriptor: TypedPropertyDescriptor<FileRouteHandler>) => TypedPropertyDescriptor<FileRouteHandler>;
 /**
  * Generates a HTTP POST route with the following semantics:
  *  - Any non null or undefeind value returned from a function is
