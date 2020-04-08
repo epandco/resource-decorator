@@ -34,7 +34,7 @@ class DefaultAPIRenderer implements ResourceRenderer {
   }
 
   async notFound(): Promise<string> {
-    throw new Error('Method not implemented.');
+    return '';
   }
 
   async expectedError(err: ResourceError): Promise<string> {
